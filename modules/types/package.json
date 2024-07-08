@@ -1,8 +1,10 @@
 {
   "private": true,
-  "name": "@split-tetris/backend",
+  "name": "@split-tetris/types",
   "version": "1.0.0",
   "description": "",
+  "main": "build/types.js",
+  "types": "build/types.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
@@ -14,16 +16,9 @@
     "url": "https://github.com/Ascarbek/uws-svelte-tetris"
   },
   "dependencies": {
-    "@types/jsonwebtoken": "9.0.6",
-    "@types/uuid": "^9.0.8",
-    "dayjs": "1.11.10",
-    "dotenv": "16.4.2",
-    "jsonwebtoken": "9.0.2",
     "nodemon": "3.0.3",
     "tslib": "2.6.2",
     "typescript": "5.3.3",
-    "uWebSockets.js": "github:uNetworking/uWebSockets.js#v20.38.0",
-    "uuid": "^9.0.1",
     "zod": "3.22.4"
   }
 }
