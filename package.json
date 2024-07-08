@@ -1,0 +1,20 @@
+{
+  "name": "split-tetris",
+  "version": "1.0.0",
+  "description": "Project to demonstrate uWebsocket and Svelte for multiplayer tetris game",
+  "private": true,
+  "type": "module",
+  "repository": {
+    "url": "https://github.com/Ascarbek/uws-svelte-tetris"
+  },
+  "author": {
+    "name": "Askarbek Zadauly",
+    "email": "ascarbek@gmail.com"
+  },
+  "workspaces": ["modules/*"],
+  "devDependencies": {
+    "prettier": "3.2.5",
+    "prettier-plugin-svelte": "3.2.2",
+    "prettier-plugin-tailwindcss": "0.4.1"
+  }
+}
