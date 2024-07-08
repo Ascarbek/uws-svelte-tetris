@@ -8,7 +8,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
-    "run": "pnpm run build && node build/server.js",
+    "run": "pnpm run build",
     "watch": "node src/watch.js"
   },
   "repository": {
