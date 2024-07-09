@@ -5,6 +5,7 @@
   "description": "",
   "main": "build/types.js",
   "types": "build/types.d.ts",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",

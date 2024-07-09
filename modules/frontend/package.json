@@ -21,6 +21,7 @@
   },
   "devDependencies": {
     "@split-tetris/backend": "workspace:^",
+    "@split-tetris/types": "workspace:^",
     "@playwright/test": "1.44.0",
     "@sveltejs/adapter-static": "3.0.1",
     "@sveltejs/kit": "2.5.17",
