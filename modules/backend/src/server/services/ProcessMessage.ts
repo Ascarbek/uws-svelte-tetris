@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { TDispatchItem } from '@split-tetris/types';
+import { TDispatch } from '@split-tetris/types';
 import { LogError } from './Logger.js';
 import { Dispatch } from './MessageDispatcher.js';
 
@@ -9,7 +9,7 @@ export const processMessage = async (
   params: any,
   inputShape: z.AnyZodObject,
   outputShape: z.AnyZodObject | z.ZodDiscriminatedUnion<any, any> | z.ZodVoid,
-  handler: (any: any, dispatcher: (item: TDispatchItem) => void) => Promise<any>
+  handler: (any: any, dispatch: TDispatch) => Promise<any>
 ) => {
   const input = inputShape.safeParse(params);
   if (!input.success) {

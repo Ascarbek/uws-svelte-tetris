@@ -12,12 +12,13 @@ export { TSocketMessageRoute } from './lib/SocketMessageShapes.js';
 /**
  * Socket server -> client
  * */
-export { dispatchItemShape, TDispatchItem } from './shapes/DispatchItems.js';
+export { dispatchItemShape, TDispatchItem, TDispatch } from './shapes/DispatchItems.js';
 
 /**
  * Input
  * */
 export { signInRequestShape, TSignInRequest } from './shapes/request/sign-in.js';
+export { signUpRequestShape, TSignUpRequest } from './shapes/request/sign-up.js';
 
 /**
  * Output

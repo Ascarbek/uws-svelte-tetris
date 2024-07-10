@@ -11,3 +11,5 @@ export const dispatchItemShape = z.discriminatedUnion('type', [
 ]);
 
 export type TDispatchItem = z.infer<typeof dispatchItemShape>;
+
+export type TDispatch = (item: TDispatchItem) => void;
