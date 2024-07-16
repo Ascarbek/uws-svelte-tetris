@@ -28,5 +28,5 @@ export { renderBoardRequestShape, TRenderBoardRequest } from './shapes/request/r
 /**
  * Game
  * */
-export { levelCellDataShape, TLevelCellData } from './shapes/LevelShapes.js';
-export { UserActionTypes } from './shapes/UserActionShapes.js';
+export { levelCellDataShape, TLevelCellData } from './shapes/game/LevelShapes.js';
+export { UserActionTypes } from './shapes/game/UserActionShapes.js';

@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { levelCellDataShape } from '../LevelShapes.js';
+import { levelCellDataShape } from '../game/LevelShapes';
 
 export const renderBoardRequestShape = z.object({
   cells: levelCellDataShape,

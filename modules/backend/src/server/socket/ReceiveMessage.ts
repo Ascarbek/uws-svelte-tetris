@@ -26,7 +26,7 @@ export const ReceiveMessage: (
   try {
     ws.send(JSON.stringify(response));
   } catch (e) {
-    console.error('ReceiveMessage: problem on sending data to client!');
+    LogError('ReceiveMessage: problem on sending data to client!');
     console.error(e);
   }
 };
