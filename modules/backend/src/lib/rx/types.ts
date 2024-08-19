@@ -1,4 +1,4 @@
-import type { PromiseOrValue, Unsubscribe } from './common';
+import type { PromiseOrValue, Unsubscribe } from './common.js';
 
 export type IListener<T = void> = (event: T) => PromiseOrValue<void>;
 

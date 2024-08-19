@@ -1,5 +1,5 @@
 import { getSocketById } from './CurrentSocket.js';
-import { SocketMessageTypes, TSocketMessage } from '@split-tetris/types';
+import { SocketMessageTypes, TSocketMessage } from '../../lib/SocketMessageShapes.js';
 
 export const SendMessage: (params: {
   message_type: SocketMessageTypes;

@@ -17,13 +17,13 @@ export { dispatchItemShape, TDispatchItem, TDispatch } from './shapes/DispatchIt
 /**
  * Input
  * */
-export { signInRequestShape, TSignInRequest } from './shapes/request/sign-in.js';
-export { signUpRequestShape, TSignUpRequest } from './shapes/request/sign-up.js';
+export { signInRequestShape, TSignInRequest } from './server/routes/sign-in-route.js';
+export { signUpRequestShape, TSignUpRequest } from './server/routes/sign-up-route.js';
 
 /**
  * Output
  * */
-export { renderBoardRequestShape, TRenderBoardRequest } from './shapes/request/render-board.js';
+export { renderBoardRequestShape, TRenderBoardRequest } from './server/routes/render-board-route.js';
 
 /**
  * Game

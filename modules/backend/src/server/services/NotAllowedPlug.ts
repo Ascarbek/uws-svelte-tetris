@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { TSocketMessageRoute, commonResponseShape } from '@split-tetris/types';
+import { TSocketMessageRoute, commonResponseShape } from '../../lib/SocketMessageShapes.js';
 
 export const NotAllowedPlug: TSocketMessageRoute = {
   input: z.object({}),

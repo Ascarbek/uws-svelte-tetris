@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { TDispatch } from '@split-tetris/types';
+import { TDispatch } from '../../shapes/DispatchItems.js';
 import { LogError } from './Logger.js';
 import { Dispatch } from './MessageDispatcher.js';
 

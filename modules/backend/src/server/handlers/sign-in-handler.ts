@@ -1,4 +1,6 @@
-import { TCommonResponse, TDispatchItem, TSignInRequest } from '@split-tetris/types';
+import { TCommonResponse } from '../../lib/SocketMessageShapes.js';
+import { TDispatchItem } from '../../shapes/DispatchItems.js';
+import { TSignInRequest } from '../routes/sign-in-route.js';
 
 export const signInHandler: (
   params: TSignInRequest,

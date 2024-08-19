@@ -1,5 +1,5 @@
-import type { IListener, ISubject } from './types';
-import type { Unsubscribe } from './common';
+import type { IListener, ISubject } from './types.js';
+import type { Unsubscribe } from './common.js';
 
 export class Subject<T = void> implements ISubject<T> {
   private _listeners = new Map<object, (event: T) => any>();

@@ -1,4 +1,4 @@
-import { SocketMessageTypes, TSocketMessageRoute } from '@split-tetris/types';
+import { SocketMessageTypes, TSocketMessageRoute } from '../../lib/SocketMessageShapes.js';
 import { NotAllowedPlug } from '../services/NotAllowedPlug.js';
 import { signInRoute } from '../routes/sign-in-route.js';
 import { signUpRoute } from '../routes/sign-up-route.js';

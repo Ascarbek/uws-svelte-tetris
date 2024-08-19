@@ -1,4 +1,5 @@
-import { SocketMessageTypes, TDispatchItem } from '@split-tetris/types';
+import { SocketMessageTypes } from '../../lib/SocketMessageShapes.js';
+import { TDispatchItem } from '../../shapes/DispatchItems.js';
 import { SendMessage } from '../socket/SendMessage.js';
 
 export const Dispatch: (data: TDispatchItem, socket_id: string, message_id: string) => void = (
