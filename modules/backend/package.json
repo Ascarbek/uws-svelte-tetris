@@ -17,16 +17,22 @@
     "url": "https://github.com/Ascarbek/uws-svelte-tetris"
   },
   "dependencies": {
+    "@types/csprng": "0.1.4",
     "@types/jsonwebtoken": "9.0.6",
-    "@types/uuid": "^9.0.8",
+    "@types/mysql": "2.15.26",
+    "@types/uuid": "9.0.8",
+    "csprng": "0.1.2",
     "dayjs": "1.11.10",
     "dotenv": "16.4.2",
+    "js-sha256": "0.11.0",
     "jsonwebtoken": "9.0.2",
+    "knex": "3.1.0",
+    "mysql": "2.18.1",
     "nodemon": "3.0.3",
     "tslib": "2.6.2",
     "typescript": "5.3.3",
     "uWebSockets.js": "github:uNetworking/uWebSockets.js#v20.38.0",
-    "uuid": "^9.0.1",
+    "uuid": "9.0.1",
     "zod": "3.22.4"
   }
 }

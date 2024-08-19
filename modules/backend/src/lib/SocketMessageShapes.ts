@@ -21,15 +21,13 @@ export const socketMessageShape = z.object({
 export type TSocketMessage = z.infer<typeof socketMessageShape>;
 
 export const commonResponseShape = z.discriminatedUnion('success', [
-  z.object(
-    {
-      success: z.literal(true),
-    },
-    z.object({
-      success: z.literal(false),
-      error: z.string(),
-    })
-  ),
+  z.object({
+    success: z.literal(true),
+  }),
+  z.object({
+    success: z.literal(false),
+    error: z.string(),
+  }),
 ]);
 
 export type TCommonResponse = z.infer<typeof commonResponseShape>;
