@@ -22,6 +22,8 @@ export const signInResponseShape = z.discriminatedUnion('success', [
   }),
 ]);
 
+export type TSignInResponse = z.infer<typeof signInResponseShape>;
+
 export const signInRoute: TSocketMessageRoute = {
   input: signInRequestShape,
   output: commonResponseShape,

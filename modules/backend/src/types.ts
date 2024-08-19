@@ -18,6 +18,7 @@ export { dispatchItemShape, TDispatchItem, TDispatch } from './shapes/DispatchIt
  * Input
  * */
 export { signInRequestShape, TSignInRequest } from './server/routes/sign-in-route.js';
+export { signInResponseShape, TSignInResponse } from './server/routes/sign-in-route.js';
 export { signUpRequestShape, TSignUpRequest } from './server/routes/sign-up-route.js';
 
 /**
