@@ -1,13 +1,32 @@
 <script lang="ts">
   import Input from '$widgets/ui/Input.svelte';
   import Button from '$widgets/ui/Button.svelte';
+  import { signUp } from '$features/api/UserApi';
+  import { onMount } from 'svelte';
+  import { SignUpSubject } from '$features/messages/MessageHandlerMap';
+  import { showMessage } from '$features/modals/Modals';
 
   let username = '';
   let password = '';
 
-  const onSignUpClick = () => {
+  onMount(() => {
+    const unsub = SignUpSubject.subscribe((response) => {
+      if (!response.success) {
+        showMessage('Error', response.error);
+      }
+    });
 
-  }
+    return () => {
+      unsub();
+    };
+  });
+
+  const onSignUpClick = () => {
+    signUp({
+      username,
+      password,
+    });
+  };
 </script>
 
 <div class="w-full h-full flex items-center justify-center">
@@ -25,7 +44,7 @@
     </div>
 
     <div>
-      <Button title="Sign Up" on:click={onSignUpClick}></Button>
+      <Button title="Sign Up" on:click="{onSignUpClick}"></Button>
     </div>
   </div>
 </div>
