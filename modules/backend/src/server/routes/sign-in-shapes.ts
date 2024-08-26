@@ -12,6 +12,7 @@ export const signInResponseShape = z.discriminatedUnion('success', [
     success: z.literal(true),
     data: z.object({
       jwt: z.string(),
+      username: z.string(),
     }),
   }),
   z.object({

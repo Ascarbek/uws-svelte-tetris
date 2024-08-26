@@ -32,3 +32,4 @@ export { renderBoardRequestShape, TRenderBoardRequest } from './server/routes/re
 export { levelCellDataShape, TLevelCellData } from './shapes/game/LevelShapes.js';
 export { ROW_COUNT, COL_COUNT } from './shapes/game/LevelShapes.js';
 export { UserActionTypes } from './shapes/game/UserActionShapes.js';
+export { currentUserShape, TCurrentUser } from './shapes/game/CurrentUserShape.js';

@@ -5,6 +5,8 @@
   import { SignInSubject } from '$features/messages/MessageHandlerMap';
   import { showMessage } from '$features/modals/Modals';
   import { signIn } from '$features/api/UserApi';
+  import { CurrentUser } from '$stores/CurrentUser';
+  import { goto } from '$app/navigation';
 
   let username = '';
   let password = '';
@@ -14,7 +16,13 @@
       if (!response.success) {
         return showMessage('Error', response.error);
       }
-      console.log(response.data);
+      const { data } = response;
+      const { username, jwt } = data;
+      $CurrentUser = {
+        username,
+        jwt,
+      };
+      goto('/');
     });
 
     return () => {

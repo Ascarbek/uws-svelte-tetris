@@ -29,6 +29,6 @@
 
 <style lang="postcss">
   main {
-    height: calc(100vh - 100px);
+    height: calc(100vh - 60px - 24px);
   }
 </style>

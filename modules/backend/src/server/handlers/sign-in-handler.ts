@@ -22,6 +22,7 @@ export const signInHandler: (
         success: true,
         data: {
           jwt,
+          username,
         },
       };
     }

@@ -1,5 +1,11 @@
 <script lang="ts">
   import HomePage from '$pages/home/HomePage.svelte';
+  import { CurrentUser } from '$stores/CurrentUser';
+  import DashboardPage from '$pages/dashboard/DashboardPage.svelte';
 </script>
 
-<HomePage />
+{#if $CurrentUser === null}
+  <HomePage />
+{:else}
+  <DashboardPage />
+{/if}
