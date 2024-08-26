@@ -1,5 +1,14 @@
 <script lang="ts">
   import Button from '$widgets/ui/Button.svelte';
+  import { startGame } from '$features/api/GameApi';
+  import { CurrentUser } from '$stores/CurrentUser';
+
+  const onStartGameClick = () => {
+    if (!$CurrentUser) return;
+    startGame({
+      jwt: $CurrentUser.jwt,
+    });
+  };
 </script>
 
 <div class="h-full flex items-center justify-center">
@@ -10,8 +19,8 @@
       <div>session2</div>
     </div>
     <div class="flex items-center gap-4">
-      <Button title="Start Game"/>
-      <Button title="Join Game"/>
+      <Button on:click="{onStartGameClick}" title="Start Game" />
+      <Button title="Join Game" />
     </div>
   </div>
 </div>
