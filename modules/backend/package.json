@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "description": "",
   "type": "module",
-  "main": "build/server.js",
+  "main": "build/types.js",
   "types": "build/types.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

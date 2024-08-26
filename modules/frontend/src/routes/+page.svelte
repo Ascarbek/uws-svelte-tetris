@@ -1,4 +1,5 @@
-<div>
-  <a href="/sign-up">sign up</a>
-  <a href="/sign-in">sign in</a>
-</div>
+<script lang="ts">
+  import HomePage from '$pages/home/HomePage.svelte';
+</script>
+
+<HomePage />

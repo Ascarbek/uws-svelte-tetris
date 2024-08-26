@@ -17,9 +17,9 @@ export { dispatchItemShape, TDispatchItem, TDispatch } from './shapes/DispatchIt
 /**
  * Input
  * */
-export { signInRequestShape, TSignInRequest } from './server/routes/sign-in-route.js';
-export { signInResponseShape, TSignInResponse } from './server/routes/sign-in-route.js';
-export { signUpRequestShape, TSignUpRequest } from './server/routes/sign-up-route.js';
+export { signInRequestShape, TSignInRequest } from './server/routes/sign-in-shapes.js';
+export { signInResponseShape, TSignInResponse } from './server/routes/sign-in-shapes.js';
+export { signUpRequestShape, TSignUpRequest } from './server/routes/sign-up-shapes.js';
 
 /**
  * Output
@@ -30,4 +30,5 @@ export { renderBoardRequestShape, TRenderBoardRequest } from './server/routes/re
  * Game
  * */
 export { levelCellDataShape, TLevelCellData } from './shapes/game/LevelShapes.js';
+export { ROW_COUNT, COL_COUNT } from './shapes/game/LevelShapes.js';
 export { UserActionTypes } from './shapes/game/UserActionShapes.js';

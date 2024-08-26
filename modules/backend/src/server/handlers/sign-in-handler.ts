@@ -1,6 +1,6 @@
 import { TCommonResponse } from '../../lib/SocketMessageShapes.js';
 import { TDispatchItem } from '../../shapes/DispatchItems.js';
-import { TSignInRequest } from '../routes/sign-in-route.js';
+import { TSignInRequest } from '../routes/sign-in-shapes.js';
 import { authUser } from '../../database/authUser.js';
 import { newAccessToken } from '../../app/user/newAccessToken.js';
 
