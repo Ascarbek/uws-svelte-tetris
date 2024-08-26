@@ -1,11 +1,12 @@
 import { MessageReceiver } from '$features/messages/MessageReceiver';
 import { PUBLIC_BACKEND_SOCKET_HOST } from '$env/static/public';
 import { MessageQueue } from '$stores/Message';
-import { get, writable } from 'svelte/store';
+import { derived, get, writable } from 'svelte/store';
 
 const socket = writable<WebSocket | null>(null);
 const connected = writable(false);
 const connectionCount = writable(0);
+const SendInProgress = writable<boolean>(false);
 
 const connect = (): WebSocket => {
   connectionCount.set(get(connectionCount) + 1);
@@ -38,31 +39,33 @@ const waitForConnected = async (socket: WebSocket, startRetry: number = 0): Prom
   return Promise.resolve<boolean>(true);
 };
 
-const unsub = MessageQueue.subscribe(async (queue) => {
-  if (queue.length > 0) {
-    if (!get(connected)) {
-      connected.set(true);
-      const newSocket = connect();
-      socket.set(newSocket);
-    }
+export const startMessageQueueListener = () => {
+  return derived([MessageQueue, SendInProgress], ([queue, inProgress]) => {
+    return { queue, inProgress };
+  }).subscribe(async ({ queue, inProgress }) => {
+    if (queue.length > 0 && !inProgress) {
+      SendInProgress.set(true);
 
-    const currentSocket = get(socket);
-    if (currentSocket) {
-      const active = await waitForConnected(currentSocket);
-      if (!active) {
-        await new Promise((resolve) => setTimeout(resolve, 1000));
-        location.reload();
+      if (!get(connected)) {
+        connected.set(true);
+        const newSocket = connect();
+        socket.set(newSocket);
       }
+
+      const currentSocket = get(socket);
+      if (currentSocket) {
+        const active = await waitForConnected(currentSocket);
+        if (!active) {
+          await new Promise((resolve) => setTimeout(resolve, 1000));
+          location.reload();
+        }
+      }
+
+      const firstMessage = queue[0];
+      get(socket)?.send(JSON.stringify(firstMessage));
+
+      MessageQueue.set([...get(MessageQueue).slice(1)]);
+      SendInProgress.set(false);
     }
-
-    const firstMessage = queue[0];
-    get(socket)?.send(JSON.stringify(firstMessage));
-
-    MessageQueue.set([...queue.slice(1)]);
-  }
-});
-
-export const disconnect = () => {
-  get(socket)?.close();
-  unsub();
+  });
 };
