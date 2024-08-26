@@ -1,4 +1,4 @@
-import { TSocketMessageRoute } from '../../lib/SocketMessageShapes.js';
+import { TSocketMessageRoute } from '../../shapes/SocketMessageShapes';
 import { signInHandler } from '../handlers/sign-in-handler.js';
 import { signInRequestShape, signInResponseShape } from './sign-in-shapes.js';
 

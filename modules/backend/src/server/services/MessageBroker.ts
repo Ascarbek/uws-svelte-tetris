@@ -1,4 +1,4 @@
-import { socketMessageShape, TSocketMessage } from '../../lib/SocketMessageShapes.js';
+import { socketMessageShape, TSocketMessage } from '../../shapes/SocketMessageShapes.js';
 import { IncomingMessageMap } from '../socket-messages/IncomingMessageMap.js';
 import { processMessage } from './ProcessMessage.js';
 import { LogError, LogMessage } from './Logger.js';

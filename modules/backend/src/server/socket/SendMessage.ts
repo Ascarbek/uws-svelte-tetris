@@ -1,5 +1,5 @@
 import { getSocketById } from './CurrentSocket.js';
-import { SocketMessageTypes, TSocketMessage } from '../../lib/SocketMessageShapes.js';
+import { SocketMessageTypes, TSocketMessage } from '../../shapes/SocketMessageShapes';
 
 export const SendMessage: (params: {
   message_type: SocketMessageTypes;

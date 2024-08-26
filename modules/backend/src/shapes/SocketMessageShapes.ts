@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { TDispatch } from '../shapes/DispatchItems.js';
+import { TDispatch } from './DispatchItems';
 
 export enum SocketMessageTypes {
   SIGN_IN,
@@ -7,6 +7,7 @@ export enum SocketMessageTypes {
   SIGN_OUT,
   RENAME_USER,
   START_GAME,
+  JOIN_GAME,
   USER_MOVE,
   EXIT_GAME,
   RENDER_BOARD,
@@ -19,18 +20,6 @@ export const socketMessageShape = z.object({
 });
 
 export type TSocketMessage = z.infer<typeof socketMessageShape>;
-
-export const commonResponseShape = z.discriminatedUnion('success', [
-  z.object({
-    success: z.literal(true),
-  }),
-  z.object({
-    success: z.literal(false),
-    error: z.string(),
-  }),
-]);
-
-export type TCommonResponse = z.infer<typeof commonResponseShape>;
 
 export type TSocketMessageRoute = {
   input: z.AnyZodObject;

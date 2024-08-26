@@ -1,4 +1,4 @@
-import { TCommonResponse } from '../lib/SocketMessageShapes.js';
+import { TCommonResponse } from '../shapes/Common.js';
 import db from './db.js';
 import { hashPassword } from '../lib/hash.js';
 

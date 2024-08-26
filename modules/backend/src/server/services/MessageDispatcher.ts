@@ -1,4 +1,4 @@
-import { SocketMessageTypes } from '../../lib/SocketMessageShapes.js';
+import { SocketMessageTypes } from '../../shapes/SocketMessageShapes.js';
 import { TDispatchItem } from '../../shapes/DispatchItems.js';
 import { SendMessage } from '../socket/SendMessage.js';
 

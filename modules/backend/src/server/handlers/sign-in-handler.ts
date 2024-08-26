@@ -1,4 +1,4 @@
-import { TCommonResponse } from '../../lib/SocketMessageShapes.js';
+import { TCommonResponse } from '../../shapes/Common.js';
 import { TDispatchItem } from '../../shapes/DispatchItems.js';
 import { TSignInRequest } from '../routes/sign-in-shapes.js';
 import { authUser } from '../../database/authUser.js';
