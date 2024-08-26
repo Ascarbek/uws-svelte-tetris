@@ -17,3 +17,7 @@ export const removeSession: (id: string) => void = (id) => {
 export const updateSession: (params: TGameSession) => void = (newSession) => {
   sessions = sessions.map<TGameSession>((s) => (s.id === newSession.id ? { ...newSession } : s));
 };
+
+export const listSessions: () => TGameSession[] = () => {
+  return sessions;
+};

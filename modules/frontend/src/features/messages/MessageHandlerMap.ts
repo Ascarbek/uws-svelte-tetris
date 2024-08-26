@@ -6,6 +6,7 @@ import type {
   TRenderBoardRequest,
 } from '@split-tetris/backend';
 import { SocketMessageTypes, Subject } from '@split-tetris/backend';
+import type { TListGamesResponse } from '@split-tetris/backend/build/server/routes/list-games-shapes';
 
 export const SignUpSubject = new Subject<TCommonResponse>();
 export const SignInSubject = new Subject<TSignInResponse>();
@@ -16,6 +17,7 @@ export const JoinGameSubject = new Subject<TCommonResponse>();
 export const ExitGameSubject = new Subject<TCommonResponse>();
 export const RenameUserSubject = new Subject<TCommonResponse>();
 export const UserMoveSubject = new Subject<TCommonResponse>();
+export const ListGamesSubject = new Subject<TListGamesResponse>();
 
 const MessageHandlerMap: Record<SocketMessageTypes, ISubject<any>> = {
   [SocketMessageTypes.SIGN_UP]: SignUpSubject,
@@ -24,6 +26,7 @@ const MessageHandlerMap: Record<SocketMessageTypes, ISubject<any>> = {
   [SocketMessageTypes.RENDER_BOARD]: RenderBoardSubject,
   [SocketMessageTypes.START_GAME]: StartGameSubject,
   [SocketMessageTypes.JOIN_GAME]: JoinGameSubject,
+  [SocketMessageTypes.LIST_GAMES]: ListGamesSubject,
   [SocketMessageTypes.EXIT_GAME]: ExitGameSubject,
   [SocketMessageTypes.RENAME_USER]: RenameUserSubject,
   [SocketMessageTypes.USER_MOVE]: UserMoveSubject,
