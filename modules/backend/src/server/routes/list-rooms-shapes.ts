@@ -1,13 +1,13 @@
 import { z } from 'zod';
 import { roomShape } from '../../shapes/RoomShapes.js';
 
-export const listGamesRequestShape = z.object({
+export const listRoomsRequestShape = z.object({
   jwt: z.string(),
 });
 
-export type TListGamesRequest = z.infer<typeof listGamesRequestShape>;
+export type TListRoomsRequest = z.infer<typeof listRoomsRequestShape>;
 
-export const listGamesResponseShape = z.discriminatedUnion('success', [
+export const listRoomsResponseShape = z.discriminatedUnion('success', [
   z.object({
     success: z.literal(true),
     items: z.array(roomShape),
@@ -18,4 +18,4 @@ export const listGamesResponseShape = z.discriminatedUnion('success', [
   }),
 ]);
 
-export type TListGamesResponse = z.infer<typeof listGamesResponseShape>;
+export type TListRoomsResponse = z.infer<typeof listRoomsResponseShape>;

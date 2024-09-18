@@ -21,8 +21,8 @@ export { signInResponseShape, TSignInResponse } from './server/routes/sign-in-sh
 export { signUpRequestShape, TSignUpRequest } from './server/routes/sign-up-shapes.js'; // common response
 export { startGameRequestShape, TStartGameRequest } from './server/routes/start-game-shapes.js'; // common response
 export { joinGameRequestShape, TJoinGameRequest } from './server/routes/join-game-shapes.js'; // common response
-export { listGamesRequestShape, TListGamesRequest } from './server/routes/list-games-shapes.js';
-export { listGamesResponseShape, TListGamesResponse } from './server/routes/list-games-shapes.js';
+export { listRoomsRequestShape, TListRoomsRequest } from './server/routes/list-rooms-shapes';
+export { listRoomsResponseShape, TListRoomsResponse } from './server/routes/list-rooms-shapes';
 
 /**
  * Game Response server -> client
