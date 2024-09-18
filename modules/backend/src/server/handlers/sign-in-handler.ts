@@ -1,35 +1,37 @@
-import { TCommonResponse } from '../../shapes/Common.js';
 import { TDispatchItem } from '../../shapes/DispatchItems.js';
-import { TSignInRequest } from '../routes/sign-in-shapes.js';
-import { authUser } from '../../database/authUser.js';
+import { TSignInRequest, TSignInResponse } from '../routes/sign-in-shapes.js';
 import { newAccessToken } from '../../app/user/newAccessToken.js';
+import { authUser } from '../../app/user/authUser.js';
+import { getUserByUsername } from '../../database/user/getUserByUsername.js';
+
+const errorResponse: TSignInResponse = {
+  success: false,
+  error: 'incorrect username or password',
+};
 
 export const signInHandler: (
   params: TSignInRequest,
   dispatch: (item: TDispatchItem) => void
-) => Promise<TCommonResponse> = async ({ username, password }, dispatch) => {
-  const resp = await authUser({ username, password });
+) => Promise<TSignInResponse> = async ({ username, password }, dispatch) => {
+  const dbUser = await getUserByUsername({ username });
+  if (!dbUser) {
+    return errorResponse;
+  }
+
+  const resp = authUser({ input: { username, password }, dbUser });
+
   switch (resp.result) {
     case 'INCORRECT_INPUT': {
-      return {
-        success: false,
-        error: 'incorrect username or password',
-      };
+      return errorResponse;
     }
     case 'AUTHENTICATED': {
-      const jwt = newAccessToken(resp.user_id);
+      const jwt = newAccessToken(resp.userId);
       return {
         success: true,
         data: {
           jwt,
           username,
         },
-      };
-    }
-    case 'RUNTIME_ERROR': {
-      return {
-        success: false,
-        error: 'runtime error',
       };
     }
   }

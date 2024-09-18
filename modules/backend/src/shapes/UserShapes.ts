@@ -6,3 +6,12 @@ export const currentUserShape = z.object({
 });
 
 export type TCurrentUser = z.infer<typeof currentUserShape>;
+
+export const dbUserShape = z.object({
+  id: z.number(),
+  username: z.string(),
+  hash: z.string(),
+  salt: z.string(),
+});
+
+export type TDbUser = z.infer<typeof dbUserShape>;

@@ -1,4 +1,4 @@
-import { TGameSession } from '../shapes/GameShapes.js';
+import { TGameSession } from '../shapes/GameSessionShape';
 
 export let sessions: TGameSession[] = [];
 

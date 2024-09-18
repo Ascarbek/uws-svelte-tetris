@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { gameSession } from '../../shapes/GameShapes.js';
+import { gameSession } from '../../shapes/GameSessionShape.js';
 
 export const listGamesRequestShape = z.object({
   jwt: z.string(),
