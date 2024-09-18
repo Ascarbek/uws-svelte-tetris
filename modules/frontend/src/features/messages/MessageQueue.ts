@@ -21,6 +21,7 @@ const connect = (): WebSocket => {
   return socket;
 };
 
+// wait for socket status to become open
 const waitForConnected = async (socket: WebSocket, startRetry: number = 0): Promise<boolean> => {
   const RETRY_TIMEOUT = 200;
 
@@ -33,6 +34,7 @@ const waitForConnected = async (socket: WebSocket, startRetry: number = 0): Prom
       console.log('trying to reconnect, retry: ', retries);
     }
 
+    // increase wait time on each retry
     await new Promise((resolve) => setTimeout(resolve, RETRY_TIMEOUT * retries));
 
     if (isClosed) {
@@ -42,33 +44,46 @@ const waitForConnected = async (socket: WebSocket, startRetry: number = 0): Prom
   return Promise.resolve<boolean>(true);
 };
 
+// Main event that runs on adding message to the queue
 derived([MessageQueue, sendInProgress], ([queue, inProgress]) => {
   return { queue, inProgress };
 }).subscribe(async ({ queue, inProgress }) => {
+  // exit if another message sending is in progress
   if (queue.length > 0 && !inProgress) {
+    // block the queue
     sendInProgress.set(true);
 
+    // create socket on first message or disconnect
     if (!get(connected)) {
       connected.set(true);
       const newSocket = connect();
       socket.set(newSocket);
     }
 
+    // grab the socket
     const currentSocket = get(socket);
     if (currentSocket) {
+      // if socket was just created then wait unit it's open
       const active = await waitForConnected(currentSocket);
+      // if socket was disconnected
       if (!active) {
+        // delay between reconnects
         await new Promise((resolve) => setTimeout(resolve, 1000));
+        // trigger socket recreation
         connected.set(false);
+        // release the queue
         sendInProgress.set(false);
         return;
       }
     }
 
+    // send first message in the queue
     const firstMessage = queue[0];
     get(socket)?.send(JSON.stringify(firstMessage));
 
+    // remove first message from the queue
     MessageQueue.set([...get(MessageQueue).slice(1)]);
+    // release the queue
     sendInProgress.set(false);
   }
 });
