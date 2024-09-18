@@ -7,6 +7,7 @@
   import { signIn } from '$features/api/UserApi';
   import { CurrentUser } from '$stores/CurrentUser';
   import { goto } from '$app/navigation';
+  import PasswordInput from '$widgets/ui/PasswordInput.svelte';
 
   let username = '';
   let password = '';
@@ -49,7 +50,7 @@
 
     <div>
       <span>Password:</span>
-      <Input bind:value="{password}" />
+      <PasswordInput bind:value="{password}" />
     </div>
 
     <div>

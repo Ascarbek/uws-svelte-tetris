@@ -3,18 +3,18 @@
   import Footer from '$widgets/nav/Footer.svelte';
   import { MessageModal, ModalQueue } from '$stores/ModalStore';
   import Message from '$widgets/popup/Message.svelte';
+  import { startMessageListener } from '$features/messages/MessageQueue';
   import { onMount } from 'svelte';
-  import { startMessageQueueListener } from '$features/messages/MessageQueue';
+
+  $MessageModal = Message;
 
   onMount(() => {
-    const unsub = startMessageQueueListener();
+    const unsub = startMessageListener();
 
     return () => {
       unsub();
     };
   });
-
-  $MessageModal = Message;
 </script>
 
 <Header />

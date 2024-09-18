@@ -3,7 +3,7 @@
   export let size: 'normal' | 'small' | 'medium' | 'large' | 'huge' = 'normal';
 </script>
 
-<input bind:value class="{size}" type="text" />
+<input bind:value class="{size}" type="password" />
 
 <style lang="postcss">
   .normal {

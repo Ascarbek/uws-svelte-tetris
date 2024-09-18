@@ -5,6 +5,7 @@
   import { onMount } from 'svelte';
   import { SignUpSubject } from '$features/messages/MessageHandlerMap';
   import { showMessage } from '$features/modals/Modals';
+  import PasswordInput from '$widgets/ui/PasswordInput.svelte';
 
   let username = '';
   let password = '';
@@ -40,7 +41,7 @@
 
     <div>
       <span>Password:</span>
-      <Input bind:value="{password}" />
+      <PasswordInput bind:value="{password}" />
     </div>
 
     <div>
