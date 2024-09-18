@@ -11,8 +11,8 @@ export const Dispatch: (data: TDispatchItem, socket_id: string, message_id: stri
     case SocketMessageTypes.RENDER_BOARD:
       SendMessage({ message_type: SocketMessageTypes.RENDER_BOARD, socket_id, message_id, request: data.body });
       break;
-    case SocketMessageTypes.LIST_GAMES:
-      SendMessage({ message_type: SocketMessageTypes.LIST_GAMES, socket_id, message_id, request: data.body });
+    case SocketMessageTypes.LIST_ROOMS:
+      SendMessage({ message_type: SocketMessageTypes.LIST_ROOMS, socket_id, message_id, request: data.body });
       break;
   }
 };

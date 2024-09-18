@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { levelCellDataShape } from './LevelShapes.js';
 
-export const gameSession = z.object({
+export const roomShape = z.object({
   id: z.string(),
   host: z.object({
     id: z.number(),
@@ -17,4 +17,4 @@ export const gameSession = z.object({
   created: z.number(),
 });
 
-export type TGameSession = z.infer<typeof gameSession>;
+export type TRoom = z.infer<typeof roomShape>;

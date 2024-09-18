@@ -20,6 +20,7 @@ export { signInRequestShape, TSignInRequest } from './server/routes/sign-in-shap
 export { signInResponseShape, TSignInResponse } from './server/routes/sign-in-shapes.js';
 export { signUpRequestShape, TSignUpRequest } from './server/routes/sign-up-shapes.js'; // common response
 export { startGameRequestShape, TStartGameRequest } from './server/routes/start-game-shapes.js'; // common response
+export { joinGameRequestShape, TJoinGameRequest } from './server/routes/join-game-shapes.js'; // common response
 export { listGamesRequestShape, TListGamesRequest } from './server/routes/list-games-shapes.js';
 export { listGamesResponseShape, TListGamesResponse } from './server/routes/list-games-shapes.js';
 
@@ -35,4 +36,4 @@ export { levelCellDataShape, TLevelCellData } from './shapes/LevelShapes.js';
 export { ROW_COUNT, COL_COUNT } from './shapes/LevelShapes.js';
 export { UserActionTypes } from './shapes/UserActionShapes.js';
 export { currentUserShape, TCurrentUser } from './shapes/UserShapes.js';
-export { gameSession, TGameSession } from './shapes/GameSessionShape.js';
+export { roomShape, TRoom } from './shapes/RoomShapes.js';

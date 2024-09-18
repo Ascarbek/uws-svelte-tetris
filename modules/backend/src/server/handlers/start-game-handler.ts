@@ -1,7 +1,7 @@
 import { v4 as uid } from 'uuid';
 import { TStartGameRequest } from '../routes/start-game-shapes.js';
 import { TCommonResponse } from '../../shapes/Common.js';
-import { TGameSession } from '../../shapes/GameSessionShape.js';
+import { TRoom } from '../../shapes/RoomShapes.js';
 import { checkAccessToken } from '../../app/user/checkAccessToken.js';
 import { getUsernameById } from '../../database/user/getUsernameById.js';
 import { COL_COUNT, ROW_COUNT } from '../../shapes/LevelShapes.js';
@@ -28,7 +28,7 @@ export const startGameHandler: (params: TStartGameRequest, dispatch: TDispatch) 
   }
   const user = getUserResp.data;
 
-  const session: TGameSession = {
+  const session: TRoom = {
     id: uid(),
     created: new Date().getTime(),
     host: {
@@ -41,7 +41,7 @@ export const startGameHandler: (params: TStartGameRequest, dispatch: TDispatch) 
 
   addNewSession(session);
   dispatch({
-    type: SocketMessageTypes.LIST_GAMES,
+    type: SocketMessageTypes.LIST_ROOMS,
     body: {
       success: true,
       items: listSessions(),

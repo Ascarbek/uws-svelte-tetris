@@ -23,13 +23,13 @@ export const joinGameHandler: (params: TJoinGameRequest) => Promise<TCommonRespo
   if (!getUserResp.success) {
     return getUserResp;
   }
-  const user = getUserResp.data;
+  const { username: currentUsername } = getUserResp.data;
 
   session.guests = [
     ...session.guests,
     {
       id: userId,
-      username: user.username,
+      username: currentUsername,
     },
   ];
 

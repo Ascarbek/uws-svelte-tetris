@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { SocketMessageTypes } from './SocketMessageShapes';
 import { renderBoardRequestShape } from '../server/routes/render-board-route.js';
-import { gameSession } from './GameSessionShape.js';
+import { roomShape } from './RoomShapes.js';
 
 export const dispatchItemShape = z.discriminatedUnion('type', [
   z.object({
@@ -9,10 +9,10 @@ export const dispatchItemShape = z.discriminatedUnion('type', [
     body: renderBoardRequestShape,
   }),
   z.object({
-    type: z.literal(SocketMessageTypes.LIST_GAMES),
+    type: z.literal(SocketMessageTypes.LIST_ROOMS),
     body: z.object({
       success: z.literal(true),
-      items: z.array(gameSession),
+      items: z.array(roomShape),
     }),
   }),
 ]);

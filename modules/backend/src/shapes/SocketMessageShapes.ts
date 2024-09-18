@@ -6,7 +6,7 @@ export enum SocketMessageTypes {
   SIGN_UP,
   SIGN_OUT,
   RENAME_USER,
-  LIST_GAMES,
+  LIST_ROOMS,
   START_GAME,
   JOIN_GAME,
   USER_MOVE,
