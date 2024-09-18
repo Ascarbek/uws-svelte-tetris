@@ -2,7 +2,6 @@ import { MessageReceiver } from '$features/messages/MessageReceiver';
 import { PUBLIC_BACKEND_SOCKET_HOST } from '$env/static/public';
 import { MessageQueue } from '$stores/Message';
 import { derived, get, writable } from 'svelte/store';
-import { browser } from '$app/environment';
 
 const socket = writable<WebSocket | null>(null);
 const connected = writable(false);
@@ -56,7 +55,7 @@ export const startMessageListener = () => {
       sendInProgress.set(true);
 
       // create socket on first message or disconnect
-      if (!get(connected)) {
+      if (!get(connected) && !get(socket)) {
         connected.set(true);
         const newSocket = connect();
         socket.set(newSocket);
@@ -75,7 +74,9 @@ export const startMessageListener = () => {
           connected.set(false);
           // release the queue
           sendInProgress.set(false);
-          return;
+          return () => {
+            currentSocket.close();
+          };
         }
       }
 
@@ -88,6 +89,9 @@ export const startMessageListener = () => {
       // release the queue
       sendInProgress.set(false);
     }
+    return () => {
+      get(socket)?.close();
+    };
   });
 };
 

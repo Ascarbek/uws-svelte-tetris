@@ -6,6 +6,7 @@
   import { SignUpSubject } from '$features/messages/MessageHandlerMap';
   import { showMessage } from '$features/modals/Modals';
   import PasswordInput from '$widgets/ui/PasswordInput.svelte';
+  import { goto } from '$app/navigation';
 
   let username = '';
   let password = '';
@@ -14,7 +15,9 @@
     const unsub = SignUpSubject.subscribe((response) => {
       if (!response.success) {
         showMessage('Error', response.error);
+        return;
       }
+      goto('/');
     });
 
     return () => {
