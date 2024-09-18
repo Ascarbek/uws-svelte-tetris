@@ -13,10 +13,11 @@ export const signInHandler: (
   params: TSignInRequest,
   dispatch: (item: TDispatchItem) => void
 ) => Promise<TSignInResponse> = async ({ username, password }, dispatch) => {
-  const dbUser = await getUserByUsername({ username });
-  if (!dbUser) {
+  const dbUserResp = await getUserByUsername({ username });
+  if (!dbUserResp.success) {
     return errorResponse;
   }
+  const { dbUser } = dbUserResp;
 
   const resp = authUser({ input: { username, password }, dbUser });
 

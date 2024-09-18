@@ -1,7 +1,7 @@
 import { TJoinGameRequest } from '../routes/join-game-shapes.js';
 import { TCommonResponse } from '../../shapes/Common.js';
 import { getSessionById, updateSession } from '../../cache/Session.js';
-import { getUserById } from '../../database/getUserById.js';
+import { getUsernameById } from '../../database/user/getUsernameById.js';
 import { checkAccessToken } from '../../app/user/checkAccessToken.js';
 
 export const joinGameHandler: (params: TJoinGameRequest) => Promise<TCommonResponse> = async ({ jwt, sessionId }) => {
@@ -19,7 +19,7 @@ export const joinGameHandler: (params: TJoinGameRequest) => Promise<TCommonRespo
       error: 'joinGameHandler: incorrect or expired access token',
     };
   }
-  const getUserResp = await getUserById({ id: userId });
+  const getUserResp = await getUsernameById({ id: userId });
   if (!getUserResp.success) {
     return getUserResp;
   }

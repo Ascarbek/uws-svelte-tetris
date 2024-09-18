@@ -3,7 +3,7 @@ import { TStartGameRequest } from '../routes/start-game-shapes.js';
 import { TCommonResponse } from '../../shapes/Common.js';
 import { TGameSession } from '../../shapes/GameSessionShape.js';
 import { checkAccessToken } from '../../app/user/checkAccessToken.js';
-import { getUserById } from '../../database/getUserById.js';
+import { getUsernameById } from '../../database/user/getUsernameById.js';
 import { COL_COUNT, ROW_COUNT } from '../../shapes/LevelShapes.js';
 import { addNewSession } from '../../cache/Session.js';
 
@@ -17,7 +17,7 @@ export const startGameHandler: (params: TStartGameRequest) => Promise<TCommonRes
     };
   }
 
-  const getUserResp = await getUserById({ id: userId });
+  const getUserResp = await getUsernameById({ id: userId });
   if (!getUserResp.success) {
     return getUserResp;
   }

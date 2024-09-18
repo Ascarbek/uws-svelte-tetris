@@ -1,6 +1,6 @@
-import { TCommonResponse } from '../shapes/Common.js';
-import db from './db.js';
-import { hashPassword } from '../lib/hash.js';
+import { TCommonResponse } from '../../shapes/Common.js';
+import db from '../db.js';
+import { hashPassword } from '../../lib/hash.js';
 
 export const addUser: (params: { username: string; password: string }) => Promise<TCommonResponse> = async ({
   username,

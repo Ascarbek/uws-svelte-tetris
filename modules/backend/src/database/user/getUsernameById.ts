@@ -1,4 +1,4 @@
-import db from './db.js';
+import db from '../db.js';
 
 type TReturnType =
   | {
@@ -12,7 +12,7 @@ type TReturnType =
       error: string;
     };
 
-export const getUserById: (params: { id: number }) => Promise<TReturnType> = async ({ id }) => {
+export const getUsernameById: (params: { id: number }) => Promise<TReturnType> = async ({ id }) => {
   try {
     const raw = await db('user').where('id', id).first();
     if (!raw) {
