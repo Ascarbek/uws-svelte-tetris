@@ -6,12 +6,12 @@ import { derived, get, writable } from 'svelte/store';
 const socket = writable<WebSocket | null>(null);
 const connected = writable(false);
 const connectionCount = writable(0);
-const SendInProgress = writable<boolean>(false);
+const sendInProgress = writable<boolean>(false);
 
 const connect = (): WebSocket => {
   connectionCount.set(get(connectionCount) + 1);
   console.log('new connection: ', get(connectionCount));
-  const socket = new WebSocket(`${PUBLIC_BACKEND_SOCKET_HOST}/game`);
+  const socket = new WebSocket(`${PUBLIC_BACKEND_SOCKET_HOST}`);
   socket.addEventListener<'message'>('message', (event) => {
     MessageReceiver(event.data);
   });
@@ -42,11 +42,11 @@ const waitForConnected = async (socket: WebSocket, startRetry: number = 0): Prom
   return Promise.resolve<boolean>(true);
 };
 
-derived([MessageQueue, SendInProgress], ([queue, inProgress]) => {
+derived([MessageQueue, sendInProgress], ([queue, inProgress]) => {
   return { queue, inProgress };
 }).subscribe(async ({ queue, inProgress }) => {
   if (queue.length > 0 && !inProgress) {
-    SendInProgress.set(true);
+    sendInProgress.set(true);
 
     if (!get(connected)) {
       connected.set(true);
@@ -60,7 +60,7 @@ derived([MessageQueue, SendInProgress], ([queue, inProgress]) => {
       if (!active) {
         await new Promise((resolve) => setTimeout(resolve, 1000));
         connected.set(false);
-        SendInProgress.set(false);
+        sendInProgress.set(false);
         return;
       }
     }
@@ -69,7 +69,7 @@ derived([MessageQueue, SendInProgress], ([queue, inProgress]) => {
     get(socket)?.send(JSON.stringify(firstMessage));
 
     MessageQueue.set([...get(MessageQueue).slice(1)]);
-    SendInProgress.set(false);
+    sendInProgress.set(false);
   }
 });
 
