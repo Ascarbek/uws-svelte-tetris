@@ -5,9 +5,14 @@ import { TGameSession } from '../../shapes/GameSessionShape.js';
 import { checkAccessToken } from '../../app/user/checkAccessToken.js';
 import { getUsernameById } from '../../database/user/getUsernameById.js';
 import { COL_COUNT, ROW_COUNT } from '../../shapes/LevelShapes.js';
-import { addNewSession } from '../../cache/Session.js';
+import { addNewSession, listSessions } from '../../cache/Session.js';
+import { TDispatch } from '../../shapes/DispatchItems.js';
+import { SocketMessageTypes } from '../../shapes/SocketMessageShapes.js';
 
-export const startGameHandler: (params: TStartGameRequest) => Promise<TCommonResponse> = async ({ jwt }) => {
+export const startGameHandler: (params: TStartGameRequest, dispatch: TDispatch) => Promise<TCommonResponse> = async (
+  { jwt },
+  dispatch
+) => {
   const userId = checkAccessToken(jwt);
 
   if (!userId) {
@@ -35,6 +40,13 @@ export const startGameHandler: (params: TStartGameRequest) => Promise<TCommonRes
   };
 
   addNewSession(session);
+  dispatch({
+    type: SocketMessageTypes.LIST_GAMES,
+    body: {
+      success: true,
+      items: listSessions(),
+    },
+  });
 
   return {
     success: false,

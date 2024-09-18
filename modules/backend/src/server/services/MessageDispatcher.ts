@@ -9,8 +9,10 @@ export const Dispatch: (data: TDispatchItem, socket_id: string, message_id: stri
 ) => {
   switch (data.type) {
     case SocketMessageTypes.RENDER_BOARD:
-      SendMessage({ message_type: SocketMessageTypes.RENDER_BOARD, socket_id, message_id, request: data });
-
+      SendMessage({ message_type: SocketMessageTypes.RENDER_BOARD, socket_id, message_id, request: data.body });
+      break;
+    case SocketMessageTypes.LIST_GAMES:
+      SendMessage({ message_type: SocketMessageTypes.LIST_GAMES, socket_id, message_id, request: data.body });
       break;
   }
 };
