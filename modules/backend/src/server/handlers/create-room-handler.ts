@@ -1,5 +1,5 @@
 import { v4 as uid } from 'uuid';
-import { TStartGameRequest } from '../routes/start-game-shapes.js';
+import { TCreateRoomRequest } from '../routes/create-room-shapes.js';
 import { TCommonResponse } from '../../shapes/Common.js';
 import { TRoom } from '../../shapes/RoomShapes.js';
 import { checkAccessToken } from '../../app/user/checkAccessToken.js';
@@ -9,7 +9,7 @@ import { addNewSession, listSessions } from '../../cache/Session.js';
 import { TDispatch } from '../../shapes/DispatchItems.js';
 import { SocketMessageTypes } from '../../shapes/SocketMessageShapes.js';
 
-export const startGameHandler: (params: TStartGameRequest, dispatch: TDispatch) => Promise<TCommonResponse> = async (
+export const createRoomHandler: (params: TCreateRoomRequest, dispatch: TDispatch) => Promise<TCommonResponse> = async (
   { jwt },
   dispatch
 ) => {

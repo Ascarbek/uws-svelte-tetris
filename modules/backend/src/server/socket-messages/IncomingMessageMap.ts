@@ -2,7 +2,7 @@ import { SocketMessageTypes, TSocketMessageRoute } from '../../shapes/SocketMess
 import { NotAllowedPlug } from '../services/NotAllowedPlug.js';
 import { signInRoute } from '../routes/sign-in-route.js';
 import { signUpRoute } from '../routes/sign-up-route.js';
-import { startGameRoute } from '../routes/start-game-route.js';
+import { createRoomRoute } from '../routes/create-room-route.js';
 import { joinGameRoute } from '../routes/join-game-route.js';
 import { listRoomsRoute } from '../routes/list-rooms-route.js';
 
@@ -12,7 +12,7 @@ export const IncomingMessageMap: Record<SocketMessageTypes, TSocketMessageRoute>
   [SocketMessageTypes.SIGN_OUT]: NotAllowedPlug,
   [SocketMessageTypes.RENAME_USER]: NotAllowedPlug,
   [SocketMessageTypes.LIST_ROOMS]: listRoomsRoute,
-  [SocketMessageTypes.CREATE_ROOM]: startGameRoute,
+  [SocketMessageTypes.CREATE_ROOM]: createRoomRoute,
   [SocketMessageTypes.JOIN_ROOM]: joinGameRoute,
   [SocketMessageTypes.USER_MOVE]: NotAllowedPlug,
   [SocketMessageTypes.EXIT_GAME]: NotAllowedPlug,

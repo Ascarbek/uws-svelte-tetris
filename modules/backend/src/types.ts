@@ -19,7 +19,7 @@ export { dispatchItemShape, TDispatchItem, TDispatch } from './shapes/DispatchIt
 export { signInRequestShape, TSignInRequest } from './server/routes/sign-in-shapes.js';
 export { signInResponseShape, TSignInResponse } from './server/routes/sign-in-shapes.js';
 export { signUpRequestShape, TSignUpRequest } from './server/routes/sign-up-shapes.js'; // common response
-export { startGameRequestShape, TStartGameRequest } from './server/routes/start-game-shapes.js'; // common response
+export { createRoomRequestShape, TCreateRoomRequest } from './server/routes/create-room-shapes'; // common response
 export { joinGameRequestShape, TJoinGameRequest } from './server/routes/join-game-shapes.js'; // common response
 export { listRoomsRequestShape, TListRoomsRequest } from './server/routes/list-rooms-shapes';
 export { listRoomsResponseShape, TListRoomsResponse } from './server/routes/list-rooms-shapes';
