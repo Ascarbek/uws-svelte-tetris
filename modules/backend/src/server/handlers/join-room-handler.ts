@@ -1,10 +1,10 @@
-import { TJoinGameRequest } from '../routes/join-game-shapes.js';
+import { TJoinRoomRequest } from '../routes/join-room-shapes.js';
 import { TCommonResponse } from '../../shapes/Common.js';
 import { getSessionById, updateSession } from '../../cache/Session.js';
 import { getUsernameById } from '../../database/user/getUsernameById.js';
 import { checkAccessToken } from '../../app/user/checkAccessToken.js';
 
-export const joinGameHandler: (params: TJoinGameRequest) => Promise<TCommonResponse> = async ({ jwt, sessionId }) => {
+export const joinRoomHandler: (params: TJoinRoomRequest) => Promise<TCommonResponse> = async ({ jwt, sessionId }) => {
   const session = getSessionById(sessionId);
   if (!session) {
     return {
