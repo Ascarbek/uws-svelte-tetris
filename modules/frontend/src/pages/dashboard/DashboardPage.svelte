@@ -6,8 +6,10 @@
   import type { TCurrentUser, TGameSession } from '@split-tetris/backend';
   import { ListGamesSubject } from '$features/messages/MessageHandlerMap';
   import { showMessage } from '$features/modals/Modals';
+  import GamesList from '$widgets/dashboard/GamesList.svelte';
 
   let sessions: TGameSession[] = [];
+  let selectedSessionId = '';
 
   onMount(() => {
     const unsubList = ListGamesSubject.subscribe((response) => {
@@ -41,14 +43,12 @@
 <div class="h-full flex items-center justify-center">
   <div class="flex flex-col gap-4">
     <div>List of game sessions</div>
-    <div class="border rounded border-neutral-400 p-4 flex flex-col gap-2">
-      {#each sessions as item (item.id)}
-        <div>{item.host.username}</div>
-      {/each}
+    <div class="bg-neutral-100 flex flex-col">
+      <GamesList {sessions} bind:selectedSessionId />
     </div>
     <div class="flex items-center gap-4">
       <Button on:click="{onStartGameClick}" title="Start Game" />
-      <Button title="Join Game" />
+      <Button disabled="{selectedSessionId === ''}" title="Join Game" />
     </div>
   </div>
 </div>

@@ -11,4 +11,8 @@
   button {
     @apply rounded-xl bg-blue-500 px-8 py-1 text-white transition-colors duration-300 hover:bg-blue-700;
   }
+
+  button[disabled] {
+    @apply bg-neutral-500;
+  }
 </style>
