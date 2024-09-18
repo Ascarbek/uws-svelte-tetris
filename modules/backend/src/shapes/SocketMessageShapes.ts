@@ -9,6 +9,7 @@ export enum SocketMessageTypes {
   LIST_ROOMS,
   CREATE_ROOM,
   JOIN_ROOM,
+  LEAVE_ROOM,
   USER_MOVE,
   EXIT_GAME,
   RENDER_BOARD,
