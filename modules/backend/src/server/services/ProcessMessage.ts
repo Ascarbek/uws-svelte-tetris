@@ -17,8 +17,16 @@ export const processMessage = async (
     return null;
   }
 
-  const result = await handler(input.data, (item) => Dispatch(item, socket_id, message_id));
-  const output = outputShape.safeParse(result);
+  let handlerResult: any;
+
+  try {
+    handlerResult = await handler(input.data, (item) => Dispatch(item, socket_id, message_id));
+  } catch (e) {
+    LogError('error executing handler: ', e);
+    return null;
+  }
+
+  const output = outputShape.safeParse(handlerResult);
   if (!output.success) {
     LogError('error parsing handler result: ', output.error);
     return null;

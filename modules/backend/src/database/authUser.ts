@@ -14,6 +14,10 @@ export const authUser: (params: { username: string; password: string }) => Promi
   try {
     const rowRaw = await db('user').where({ username }).first();
 
+    if (!rowRaw) {
+      return { result: 'INCORRECT_INPUT' };
+    }
+
     const row = z
       .object({
         id: z.number(),
@@ -22,10 +26,6 @@ export const authUser: (params: { username: string; password: string }) => Promi
         salt: z.string(),
       })
       .parse(rowRaw);
-
-    if (!row) {
-      return { result: 'INCORRECT_INPUT' };
-    }
 
     if (verifyPassword(password, row.salt, row.hash)) {
       return { result: 'AUTHENTICATED', user_id: row.id };

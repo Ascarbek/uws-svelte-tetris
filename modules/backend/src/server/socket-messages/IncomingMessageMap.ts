@@ -18,3 +18,16 @@ export const IncomingMessageMap: Record<SocketMessageTypes, TSocketMessageRoute>
   [SocketMessageTypes.EXIT_GAME]: NotAllowedPlug,
   [SocketMessageTypes.RENDER_BOARD]: NotAllowedPlug,
 };
+
+export const IncomingMessageNames: Record<SocketMessageTypes, string> = {
+  [SocketMessageTypes.SIGN_IN]: 'Sign In',
+  [SocketMessageTypes.SIGN_UP]: 'Sign Up',
+  [SocketMessageTypes.SIGN_OUT]: 'Sign Out',
+  [SocketMessageTypes.RENAME_USER]: 'Rename User',
+  [SocketMessageTypes.LIST_GAMES]: 'List Games',
+  [SocketMessageTypes.START_GAME]: 'Start Game',
+  [SocketMessageTypes.JOIN_GAME]: 'Join Game',
+  [SocketMessageTypes.USER_MOVE]: 'User Move',
+  [SocketMessageTypes.EXIT_GAME]: 'Exit Game',
+  [SocketMessageTypes.RENDER_BOARD]: 'Render Board',
+};
