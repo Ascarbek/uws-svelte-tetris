@@ -15,8 +15,7 @@
   onMount(() => {
     const unsub = SignInSubject.subscribe((response) => {
       if (!response.success) {
-        showMessage('Error', response.error);
-        return;
+        return showMessage('Error', response.error);
       }
       const { data } = response;
       const { username, jwt } = data;

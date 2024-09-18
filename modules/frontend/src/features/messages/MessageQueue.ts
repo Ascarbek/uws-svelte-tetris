@@ -12,7 +12,7 @@ const connect = (): WebSocket => {
   connectionCount.set(get(connectionCount) + 1);
   console.log('new connection: ', get(connectionCount));
   const socket = new WebSocket(`${PUBLIC_BACKEND_SOCKET_HOST}`);
-  socket.addEventListener<'message'>('message', (event) => {
+  socket.addEventListener('message', (event) => {
     MessageReceiver(event.data);
   });
   socket.addEventListener('close', () => {

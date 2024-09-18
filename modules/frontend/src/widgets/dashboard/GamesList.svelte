@@ -1,10 +1,10 @@
 <script lang="ts">
-  import type { TGameSession } from '@split-tetris/backend';
+  import type { TRoom } from '@split-tetris/backend';
 
-  export let sessions: TGameSession[] = [];
+  export let sessions: TRoom[] = [];
   export let selectedSessionId = '';
 
-  const onSessionClick = (session: TGameSession): void => {
+  const onSessionClick = (session: TRoom): void => {
     selectedSessionId = session.id;
   };
 </script>
@@ -14,6 +14,9 @@
     {item.host.username}
   </button>
 {/each}
+{#if sessions.length === 0}
+  <div class="px-4 py-2 text-center">no sessions</div>
+{/if}
 
 <style lang="postcss">
   .item {

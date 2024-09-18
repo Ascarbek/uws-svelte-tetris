@@ -1,14 +1,15 @@
 <script lang="ts">
   import Button from '$widgets/ui/Button.svelte';
-  import { listGames, startGame } from '$features/api/GameApi';
+  import { joinGame, listGames, startGame } from '$features/api/GameApi';
   import { CurrentUser } from '$stores/CurrentUser';
   import { onMount } from 'svelte';
-  import type { TCurrentUser, TGameSession } from '@split-tetris/backend';
-  import { ListGamesSubject } from '$features/messages/MessageHandlerMap';
+  import type { TCurrentUser, TRoom } from '@split-tetris/backend';
+  import { JoinGameSubject, ListGamesSubject } from '$features/messages/MessageHandlerMap';
   import { showMessage } from '$features/modals/Modals';
   import GamesList from '$widgets/dashboard/GamesList.svelte';
+  import { goto } from '$app/navigation';
 
-  let sessions: TGameSession[] = [];
+  let sessions: TRoom[] = [];
   let selectedSessionId = '';
 
   onMount(() => {
@@ -16,14 +17,27 @@
       if (!response.success) {
         return showMessage('Error', response.error);
       }
+      if (!$CurrentUser) return;
       const { items } = response;
       sessions = [...items];
+
+      const findMy = sessions.find((s) => s.host.username === $CurrentUser.username);
+      if (findMy) {
+        goto('/waiting-room');
+      }
+    });
+
+    const unsubJoin = JoinGameSubject.subscribe((response) => {
+      if (!response.success) {
+        return showMessage('Error', response.error);
+      }
     });
 
     loadSessions($CurrentUser);
 
     return () => {
       unsubList();
+      unsubJoin();
     };
   });
 
@@ -38,6 +52,14 @@
       jwt: $CurrentUser.jwt,
     });
   };
+
+  const onJoinGameClick = () => {
+    if (!$CurrentUser) return;
+    joinGame({
+      jwt: $CurrentUser.jwt,
+      sessionId: selectedSessionId,
+    });
+  };
 </script>
 
 <div class="h-full flex items-center justify-center">
@@ -48,7 +70,7 @@
     </div>
     <div class="flex items-center gap-4">
       <Button on:click="{onStartGameClick}" title="Start Game" />
-      <Button disabled="{selectedSessionId === ''}" title="Join Game" />
+      <Button disabled="{selectedSessionId === ''}" on:click="{onJoinGameClick}" title="Join Game" />
     </div>
   </div>
 </div>
